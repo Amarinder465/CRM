@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Home</a>
+
+        <h2>Client Profile</h2>
+        <p><strong>Name:</strong> {{ client.name }}</p>
+        <p><strong>Email:</strong> {{ client.contact_info }}</p>
+        <p><strong>Number:</strong> {{ client.number }}</p>
+        <p><strong>Car:</strong> {{ client.car }}</p>
+        <p><strong>Last Contacted:</strong> {{ client.last_contacted }}</p>
+
+       <form method="POST" action="{{ url_for('client_profile', client_id=client.id) }}">
+    <div class="form-group">
+        <label>Select Tags</label><br>
+        {% for tag in tags %}
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}"
+                    {% if tag.name in client.tags %} checked {% endif %}>
+                <label class="form-check-label" for="tag_{{ tag.id }}">{{ tag.name }}</label>
+            </div>
+        {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-primary">Update Tags</button>
+    <button type="submit" name="contacted" class="btn btn-success">Contacted</button>
+ 
+</form>
+
+
+        <hr>
+
+        <form method="POST" action="{{ url_for('client_profile', client_id=client.id) }}">
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea class="form-control" id="notes" name="notes" rows="4">{{ client.notes }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-secondary">Save Notes</button>
+            <a href="{{ url_for('view_clients') }}" class="btn btn-secondary">Back to Clients</a>
+        </form>
+    </div>
+</body>
+</html>

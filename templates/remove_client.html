@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Clients</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Home</a>
+        <h1>Remove Clients</h1>
+
+        <ul class="list-group">
+            {% for client in clients %}
+                <li class="list-group-item">
+                    {{ client.name }} - {{ client.contact_info }}
+                    <form action="{{ url_for('remove_client', client_id=client.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="list-group-item">No clients found.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Back to dashboard -->
+    </div>
+</body>
+</html>
