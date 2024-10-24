@@ -3,12 +3,11 @@ import pymysql
 def get_db_connection():
     # Database configuration
     db_config = {
-        'user': 'root',
-        'password': 'pass',  # Change to your actual password
-        'host': 'localhost',
-        'database': 'class_management',
-        'port': 3306,  # Optional: specify port if needed
-        
+        'user': 'v9z9v3q2qr38xokh',  # Your database user
+        'password': 'nd16v01f8r08imlm',  # Your database password
+        'host': 'y2w3wxldca8enczv.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',  # Your database host
+        'database': 'px2pifryiw7qmszr',  # Your database name
+        'port': 3306,  # Use the correct MySQL port
     }
 
     try:
